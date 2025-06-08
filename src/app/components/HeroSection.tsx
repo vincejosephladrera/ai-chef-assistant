@@ -12,6 +12,7 @@ export default function HeroSection() {
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
+				viewport={{ once: true, amount: 0.8 }}
 			>
 				<motion.div
 					className="flex items-center justify-center gap-4 mb-6"

@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 
 export default function HowItWorks() {
 	return (
-		<section className="mb-8 px-4 lg:px-8">
+		<section className="px-4 lg:px-8">
 			<div className="max-w-5xl mx-auto">
 				<motion.div
 					className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 text-center border border-border/50 shadow-lg"
 					variants={containerVariants}
 					initial="hidden"
 					whileInView="visible"
+					viewport={{ once: true, amount: 0.8 }}
 				>
 					<motion.h2
 						className="text-3xl font-semibold text-foreground mb-8"
