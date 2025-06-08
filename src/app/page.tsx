@@ -1,6 +1,6 @@
-import HeroSection from './components/HeroSection';
-import HowItWorks from './components/HowItWorks';
-import MainContent from './components/MainContent';
+import HeroSection from './_components/HeroSection';
+import HowItWorks from './_components/HowItWorks';
+import MainContent from './_components/MainContent';
 
 export default function Home() {
 	return (
