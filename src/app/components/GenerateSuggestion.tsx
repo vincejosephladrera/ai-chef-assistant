@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Ingredient } from '@/features/managing-ingredients/types';
-import { childVariants, containerVariants } from './animationVariants';
+import { containerVariants } from './animationVariants';
 import { Sparkles } from 'lucide-react';
 
 export default function GenerateSuggestion({
