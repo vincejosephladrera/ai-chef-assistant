@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { OpenAI } from 'openai';
-import type { Ingredient } from '@/features/managing-ingredients/types';
-
-const openai = new OpenAI({
-	apiKey: process.env.OPENAI_API_KEY,
-});
+import openai from '@/features/meal-suggestion/lib/openAIClient';
+import createPrompt from '@/features/meal-suggestion/lib/createPrompt';
+import { ingredientsStringConvert } from '@/features/meal-suggestion/lib/ingredientsStringConvert';
 
 export async function POST(req: NextRequest) {
 	const data = await req.json();
@@ -21,29 +18,14 @@ export async function POST(req: NextRequest) {
 		return;
 	}
 
-	const stringIngredientsList = ingredients.reduce(
-		(acc: string, ingredient: Ingredient, index: number) => {
-			const ingredientStr = `${ingredient.quantity} ${ingredient.unit} of ${ingredient.name}`;
-			return index === 0 ? ingredientStr : `${acc}, ${ingredientStr}`;
-		},
-		'',
-	);
+	const stringIngredients = ingredientsStringConvert(ingredients);
 
-	const stringCookingTech = cookingTechnologies.join(', ');
+	const stringCookingTechnologies = cookingTechnologies.join(', ');
 
-	const prompt = `You are a helpful cooking assistant. The user has the following ingredients: ${stringIngredientsList}, and wants to cook using ${stringCookingTech}. 
-	Please suggest **three** practical recipes that use these ingredients and this cooking method, categorized by difficulty:
-	- One easy recipe
-	- One average recipe
-	- One difficult recipe
-	
-	For each recipe, include:
-	- Recipe name
-	- Short description
-	- Ingredients list
-	- Step-by-step instructions
-	
-	Keep the tone friendly and beginner-friendly.`;
+	const prompt = createPrompt({
+		stringIngredients: stringIngredients,
+		stringCookingTechnologies: stringCookingTechnologies,
+	});
 
 	try {
 		const completion = await openai.chat.completions.create({

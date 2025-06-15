@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 SmartPantry
 
-## Getting Started
+**SmartPantry** is a smart meal suggestion app that recommends recipes based on the **ingredients you already have**, powered by the **OpenAI API**.
 
-First, run the development server:
+> ⚠️ Budget-based grocery planning and dietary preference filtering are currently in development.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔗 Live Site
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+👉 [Visit SmartPantry](https://ai-chef-assistant.vercel.app/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📖 Overview
 
-To learn more about Next.js, take a look at the following resources:
+SmartPantry helps you plan your food using available ingredients by leveraging AI to recommend recipes based on what's already in your kitchen.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Features
 
-## Deploy on Vercel
+### ✅ Current
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 🍽️ **Meal Suggestions from Ingredients**  
+  Input what’s in your pantry and get AI-generated meals with full steps.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🛠️ Coming Soon
+
+- 🛒 **Smart Grocery List Generator**  
+  Get a grocery list tailored to your budget and dietary preferences.
+
+- 🥗 **Dietary Preference Filters**  
+  Choose preferences like vegan, keto, high-protein, low-sugar, etc.
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer     | Technology           |
+| --------- | -------------------- |
+| Framework | Next.js (App Router) |
+| AI        | OpenAI API           |
+| Styling   | Tailwind CSS         |
+| Hosting   | Vercel               |

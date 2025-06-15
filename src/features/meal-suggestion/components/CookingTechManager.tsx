@@ -3,18 +3,24 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import { defaultCookingTechnologies } from '@/features/managing-cooking-tech/data';
+import { getDefaultTechnologies } from '@/features/meal-suggestion/api/getDefaultTechnologies';
 import { Utensils, Zap } from 'lucide-react';
-import { CookingTechReducerReturn } from '@/features/managing-cooking-tech/hooks';
 import { childVariants, containerVariants } from './animationVariants';
 
-export const CookingTechManager = ({ dispatch, cookingTechnologies }: CookingTechReducerReturn) => {
+type CookingTechManagerProps = {
+	cookingTechnologies: string[];
+	toggleCookingTechnology: (id: string) => void;
+};
+
+export const CookingTechManager = ({
+	cookingTechnologies,
+	toggleCookingTechnology,
+}: CookingTechManagerProps) => {
 	const numberOfCookingTechnologies = cookingTechnologies.length;
+
 	const isNotEmpty = cookingTechnologies && numberOfCookingTechnologies !== 0;
 
-	const handleTechnologyToggle = (techId: string) => {
-		dispatch({ type: 'TOGGLE_COOKING_TECH', payload: techId });
-	};
+	const defaultCookingTechnologies = getDefaultTechnologies();
 
 	return (
 		<motion.section
@@ -65,7 +71,7 @@ export const CookingTechManager = ({ dispatch, cookingTechnologies }: CookingTec
 								<Checkbox
 									id={tech.id}
 									checked={cookingTechnologies.includes(tech.id)}
-									onCheckedChange={() => handleTechnologyToggle(tech.id)}
+									onCheckedChange={() => toggleCookingTechnology(tech.id)}
 									className="data-[state=checked]:bg-primary data-[state=checked]:border-primary shadow-sm"
 								/>
 								<div className="flex-1 cursor-pointer flex items-center gap-2 text-sm font-medium relative z-10">

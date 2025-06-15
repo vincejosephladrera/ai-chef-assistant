@@ -4,23 +4,27 @@ import { IngredientManager } from './IngredientManager';
 import { CookingTechManager } from './CookingTechManager';
 import { MealSuggestions } from './MealSuggestions';
 import GenerateSuggestion from './GenerateSuggestion';
-import { useIngredientsReducer } from '@/features/managing-ingredients/hooks';
-import { useCookingTechReducer } from '@/features/managing-cooking-tech/hooks';
-import { useDishSuggestions } from '@/features/dish-suggestions/hooks';
+import { useManageIngredients } from '@/features/meal-suggestion/hooks/useManageIngredients';
+import { useManageCookingTechnologies } from '@/features/meal-suggestion/hooks/useManageCookingTechnologies';
+import { useDishSuggestions } from '@/features/meal-suggestion/hooks/useDishSuggestion';
 
 export default function MainContent() {
-	const { ingredients, dispatch: ingredientsDispatch } = useIngredientsReducer();
+	const { ingredients, addIngredient, removeIngredient } = useManageIngredients();
 
-	const { cookingTechnologies, dispatch: cookingTechDispatch } = useCookingTechReducer();
+	const { cookingTechnologies, toggleCookingTechnology } = useManageCookingTechnologies();
 
 	const { mutate, dishSuggestions, isLoading } = useDishSuggestions();
 
 	return (
 		<div className="max-w-7xl mx-auto grid gap-10">
-			<IngredientManager ingredients={ingredients} dispatch={ingredientsDispatch} />
+			<IngredientManager
+				ingredients={ingredients}
+				addIngredient={addIngredient}
+				removeIngredient={removeIngredient}
+			/>
 			<CookingTechManager
 				cookingTechnologies={cookingTechnologies}
-				dispatch={cookingTechDispatch}
+				toggleCookingTechnology={toggleCookingTechnology}
 			/>
 			<GenerateSuggestion
 				ingredients={ingredients}

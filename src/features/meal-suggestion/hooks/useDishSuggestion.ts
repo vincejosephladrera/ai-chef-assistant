@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { generateDishSuggestion } from './utils';
+import generateDishSuggestion from '@/features/meal-suggestion/api/generateDish';
 
 const useDishSuggestions = () => {
 	const [dishSuggestions, setDishSuggestions] = useState<string | null>(null);

@@ -1,6 +1,6 @@
-import HeroSection from './_components/HeroSection';
-import HowItWorks from './_components/HowItWorks';
-import MainContent from './_components/MainContent';
+import HeroSection from '../features/meal-suggestion/components/HeroSection';
+import HowItWorks from '../features/meal-suggestion/components/HowItWorks';
+import MainContent from '../features/meal-suggestion/components/MainContent';
 
 export default function Home() {
 	return (
