@@ -8,10 +8,20 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Plus, X, ChefHat } from 'lucide-react';
-import type { IngredientsReducerReturn } from '@/features/managing-ingredients/hooks';
 import { containerVariants, childVariants } from './animationVariants';
+import { Ingredient } from '@/features/meal-suggestion/types/ingredients';
 
-export const IngredientManager = ({ ingredients, dispatch }: IngredientsReducerReturn) => {
+type IngredientManagerProps = {
+	ingredients: Ingredient[];
+	addIngredient: (ingredient: Ingredient) => void;
+	removeIngredient: (id: string) => void;
+};
+
+export const IngredientManager = ({
+	ingredients,
+	addIngredient,
+	removeIngredient,
+}: IngredientManagerProps) => {
 	const [newIngredient, setNewIngredient] = useState({
 		name: '',
 		quantity: '',
@@ -122,10 +132,7 @@ export const IngredientManager = ({ ingredients, dispatch }: IngredientsReducerR
 								<Button
 									onClick={() => {
 										const { quantity, ...rest } = newIngredient;
-										dispatch({
-											type: 'ADD_INGREDIENT',
-											payload: { id: String(Date.now()), quantity: Number(quantity), ...rest },
-										});
+										addIngredient({ id: String(Date.now()), quantity: Number(quantity), ...rest });
 										setNewIngredient({ name: '', quantity: '', unit: '' });
 									}}
 									className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 shadow-lg hover:shadow-green-500/25 transition-all duration-200"
@@ -176,12 +183,7 @@ export const IngredientManager = ({ ingredients, dispatch }: IngredientsReducerR
 															size="sm"
 															variant="ghost"
 															onClick={() => {
-																dispatch({
-																	type: 'REMOVE_INGREDIENT',
-																	payload: {
-																		id: ingredient.id,
-																	},
-																});
+																removeIngredient(ingredient.id);
 															}}
 															className="h-4 w-4 p-0 hover:bg-red-100 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
 														>

@@ -1,4 +1,4 @@
-import { Ingredient } from '../managing-ingredients/types';
+import { Ingredient } from '@/features/meal-suggestion/types/ingredients';
 
 const generateDishSuggestion = async ({
 	ingredients,
@@ -32,4 +32,4 @@ const generateDishSuggestion = async ({
 	}
 };
 
-export { generateDishSuggestion };
+export default generateDishSuggestion;

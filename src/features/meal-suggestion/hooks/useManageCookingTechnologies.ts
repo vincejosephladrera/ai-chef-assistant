@@ -1,11 +1,18 @@
-import { useReducer } from 'react';
-import type { CookingTechReducerActions } from './types';
+'use client';
 
-const useCookingTechReducer = () => {
+import { useReducer } from 'react';
+
+const useManageCookingTechnologies = () => {
 	const [cookingTechnologies, dispatch] = useReducer(cookingTechReducer, []);
 
-	return { cookingTechnologies, dispatch };
+	const toggleCookingTechnology = (id: string) => {
+		dispatch({ type: 'TOGGLE_COOKING_TECH', payload: id });
+	};
+
+	return { cookingTechnologies, toggleCookingTechnology };
 };
+
+type CookingTechReducerActions = { type: 'TOGGLE_COOKING_TECH'; payload: string };
 
 const cookingTechReducer = (state: string[], action: CookingTechReducerActions) => {
 	switch (action.type) {
@@ -20,7 +27,4 @@ const cookingTechReducer = (state: string[], action: CookingTechReducerActions) 
 	}
 };
 
-type CookingTechReducerReturn = ReturnType<typeof useCookingTechReducer>;
-
-export type { CookingTechReducerReturn };
-export { useCookingTechReducer };
+export { useManageCookingTechnologies };
